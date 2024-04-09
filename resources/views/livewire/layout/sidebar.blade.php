@@ -13,11 +13,11 @@ new class extends Component
     <!-- Logos -->
     <div class="main-sidebar-header">
         <a href="javascript:void(0);" class="header-logo">
-            <img src="{{ asset('build/assets/img/logo/logo-full-color-trans-dark.svg') }}" alt="logo"
+            <img src="{{ asset('build/assets/img/logo/logo-full-color-trans.svg') }}" alt="logo"
                  class="desktop-logo h-[37px]">
             <img src="{{ asset('build/assets/img/logo/logo-icon-color-trans.svg') }}" alt="logo"
                  class="toggle-logo h-[37px]">
-            <img src="{{asset('build/assets/img/logo/logo-full-color-light-trans.svg')}}" alt="logo"
+            <img src="{{asset('build/assets/img/logo/logo-full-color-trans.svg')}}" alt="logo"
                  class="desktop-dark h-[37px]">
             <img src="{{asset('build/assets/img/logo/logo-icon-color-trans.svg')}}" alt="logo"
                  class="toggle-dark">
