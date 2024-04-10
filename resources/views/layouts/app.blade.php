@@ -23,7 +23,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <link rel="icon" href="{{ asset('build/assets/img/logo/favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('build/assets/img/logo/favicon.ico') }}" type="image/svg">
+        <link rel="icon" href="{{ asset('build/assets/img/logo/favicon.svg') }}" type="image/svg">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -44,6 +44,9 @@
 
     </head>
     <body class="font-sans antialiased" {{ Session::has('toast') ? 'data-notification data-notification-type="' . Session::get('toast-type') . '" datanotification-message="' . Session::get('toast') . '"' : '' }}>
+        <div id="loader">
+            <img src="{{ asset('build/assets/img/media/loader.svg') }}" alt="">
+        </div>
         <div class="page">
             @livewire ('layout.header')
 
@@ -72,5 +75,6 @@
         <script src="{{ asset('build/assets/libs/custom/main.js') }}"></script>
         <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/pickr/pickr.es5.min.js') }}" data-navigate-track></script>
+        <script src="{{ asset('build/assets/libs/popperjs/core/umd/popper.min.js') }}"></script>
     </body>
 </html>
