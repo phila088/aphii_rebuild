@@ -1,8 +1,19 @@
 (function () {
     "use strict";
+
+    if (!localStorage.getItem('velvetMenu')) {
+        document.querySelector("html").setAttribute("data-theme-mode", "light");
+        document.querySelector("html").setAttribute("data-menu-styles", "light");
+        document.querySelector("html").setAttribute("data-header-styles", "gradient");
+    }
+
     if (localStorage.getItem("velvetdarktheme")) {
         document.querySelector("html").setAttribute("data-theme-mode", "dark");
         document.querySelector("html").setAttribute("data-menu-styles", "dark");
+        document.querySelector("html").setAttribute("data-header-styles", "gradient");
+    } else {
+        document.querySelector("html").setAttribute("data-theme-mode", "light");
+        document.querySelector("html").setAttribute("data-menu-styles", "light");
         document.querySelector("html").setAttribute("data-header-styles", "gradient");
     }
     if (localStorage.velvetrtl) {
@@ -13,7 +24,7 @@
     if (localStorage.velvetlayout) {
         let html = document.querySelector("html");
         html.setAttribute("data-nav-layout", "horizontal");
-        document.querySelector("html").setAttribute("data-menu-styles", "gradient");
+        document.querySelector("html").setAttribute("data-menu-styles", "light");
     }
     if (localStorage.getItem("velvetlayout") == "horizontal") {
         document.querySelector("html").setAttribute("data-nav-layout", "horizontal");

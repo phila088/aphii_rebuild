@@ -58,14 +58,14 @@
             @livewire ('layout.sidebar')
 
             <div class="page-header-breadcrumb flex items-center justify-between ">
-                <h1 class="h1 text-white">
+                <h1 class="h1 !text-gray-50 dark:!text-slate-800">
                     @yield ('title')
                 </h1>
                 @yield ('breadcrumbs')
             </div>
 
             <div class="main-content app-content z-[75]">
-                <div class="container-fluid w-100 flex">
+                <div class="container-fluid !w-full px-4 flex">
                     @yield ('content')
                 </div>
             </div>
@@ -84,32 +84,5 @@
         <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/pickr/pickr.es5.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/popperjs/core/umd/popper.min.js') }}"></script>
-    <script>
-        "use strict";
-        (() => {
-            window.addEventListener("scroll", stickyFn);
-
-            var navbar = document.querySelector(".app-sidebar");
-            var navbar1 = document.querySelector(".app-header");
-            var sticky = navbar.offsetTop;
-
-            // var sticky1 = navbar1.clientHeight;
-            function stickyFn() {
-                if (window.pageYOffset > sticky) {
-                    navbar.classList.add("sticky");
-                    navbar1.classList.add("sticky-pin");
-                } else {
-                    navbar.classList.remove("sticky");
-                    navbar1.classList.remove("sticky-pin");
-                }
-            }
-        })();
-
-        window.addEventListener("unload", () => {
-            // removing the scroll function
-            window.addEventListener("scroll", stickyFn);
-            window.addEventListener("DOMContentLoaded", stickyFn);
-        });
-    </script>
     </body>
 </html>

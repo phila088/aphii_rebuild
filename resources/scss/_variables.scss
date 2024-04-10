@@ -1,6 +1,6 @@
 :root {
     --body-bg-rgb: 237, 238, 241;
-    --primary-rgb: 142, 84, 233;
+    --primary-rgb: 10, 119, 247;
     --secondary-rgb: 245, 111, 75;
     --warning-rgb: 245, 184, 73;
     --info-rgb: 73, 182, 245;
@@ -25,7 +25,6 @@
     --primary08: rgba(var(--primary-rgb), 0.8);
     --primary09: rgba(var(--primary-rgb), 0.9);
     --primary005: rgba(var(--primary-rgb), 0.05);
-    --default-font-family: 'Inter', sans-serif;
     --default-font-weight: 400;
     --default-text-color: #1b2c3f;
     // --default-border:								  #e4e8f1;
@@ -84,7 +83,7 @@
 $default-font-family: var(--default-font-family);
 
 /*Font Size*/
-$default-font-size: 0.813rem;
+$default-font-size: 1rem;
 
 /*Font Weight*/
 $default-font-weight: var(--default-font-weight);

@@ -13,7 +13,9 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
-        "mallardduck/blade-boxicons": "^2.4"
+        "mallardduck/blade-boxicons": "^2.4",
+        "power-components/livewire-powergrid": "^5.4",
+        "spatie/laravel-permission": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

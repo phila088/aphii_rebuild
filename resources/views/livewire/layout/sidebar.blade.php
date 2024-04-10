@@ -36,12 +36,9 @@ new class extends Component
                 </svg>
             </div>
 
-            <!-- Employee Menu -->
+            {{-- Employee menu --}}
             <ul class="main-menu">
-                <!-- Main category -->
-                <x-slide-category label="Main" />
 
-                <!-- Dashboards -->
                 <li class="slide">
                     <a href="{{ route('dashboard') }}" class="side-menu__item">
                         <span class="side-menu__icon">
@@ -52,185 +49,30 @@ new class extends Component
                         </span>
                     </a>
                 </li>
+
+                <li class="slide__category"><span class="category-name"><hr /></span></li>
+
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <span class=" side-menu__icon">
-                            <i class="bi bi-currency-dollar"></i>
+                            <i class="bi bi-sliders"></i>
                         </span>
                         <span class="side-menu__label tw-mt-[0.4rem]">
-                            Accounting
+                            Admin
                         </span>
-                        <x-feathericon-chevron-right class="side-menu__angle tw-mt-[0.3rem]" />
+                        <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
                     </a>
 
                     <ul class="slide-menu child1">
                         <li class="slide">
-                            <a href="#" class="side-menu__item">
+                            <a href="{{ route('admin.users.index') }}" class="side-menu__item">
                                 <span class="side-menu__label">
-                            Dashboard
-                        </span>
+                                    Users
+                                </span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <!-- Accounting -->
-                <x-slide-parent icon="bi bi-bank" label="Accounting">
-                    <x-slide-label label="Accounting" />
-
-                    <x-slide-with-child label="Payables">
-                        <x-slide-item route="url:#" label="Awaiting invoice" />
-
-                        <x-slide-item route="url:#" label="Enter payment" />
-
-                        <x-slide-item route="url:#" label="On-hold" />
-
-                        <x-slide-item route="url:#" label="Pending invoices" />
-
-                        <x-slide-item route="url:#" label="Paid" />
-
-                        <x-slide-item route="url:#" label="Reports" />
-                    </x-slide-with-child>
-
-                    <x-slide-with-child label="Receivables">
-                        <x-slide-item route="url:#" label="Awaiting submission" />
-
-                        <x-slide-item route="url:#" label="Create invoice" />
-
-                        <x-slide-item route="url:#" label="Enter payment" />
-
-                        <x-slide-item route="url:#" label="Pending payment" />
-
-                        <x-slide-item route="url:#" label="Paid" />
-
-                        <x-slide-item route="url:#" label="Purgatory" />
-
-                        <x-slide-item route="url:#" label="Reports" />
-                    </x-slide-with-child>
-
-                </x-slide-parent>
-                <x-slide-parent icon="bi bi-building" label="Brands">
-                    <x-slide-label label="Brands" />
-
-                    <x-slide-item route="url:#" label="View all" />
-
-                    <x-slide-item route="url:javascript:void(0);" label="Reports" />
-                </x-slide-parent>
-                <x-slide-parent icon="bi bi-people" label="Clients">
-                    <x-slide-label label="Clients" />
-
-                    <x-slide-item route="url:#" label="View all" />
-
-                    <x-slide-item route="url:#" label="Reports" permission="client.generateReport" />
-                </x-slide-parent>
-
-                <!-- Quote -->
-                <x-slide-parent icon="bi bi-pencil" label="Quoting">
-                    <x-slide-label label="Quoting" />
-
-                    <x-slide-with-child label="Catalog">
-                        <x-slide-item route="url:#" label="View all" />
-
-                        <x-slide-item route="url:#" label="Create" />
-                    </x-slide-with-child>
-
-                    <x-slide-item route="url:#" label="Create" />
-
-                    <x-slide-item route="url:#" label="Pending" />
-
-                    <x-slide-item route="url:#" label="Revisions" />
-                </x-slide-parent>
-
-
-                <!-- Vendors -->
-                <x-slide-parent icon="bi bi-hammer" label="Vendors">
-                    <x-slide-label label="Vendors" />
-
-                    <x-slide-item route="url:#" label="View all" />
-
-                    <x-slide-item route="url:#" label="Create" />
-
-                </x-slide-parent>
-
-                <!-- Work orders -->
-                <x-slide-parent icon="bi bi-cone-striped" label="Work orders">
-                    <x-slide-label label="Work orders" />
-
-                    <x-slide-item route="url:#" label="View all" />
-
-                    <x-slide-item route="url:#" label="Create" />
-
-                </x-slide-parent>
-
-                <x-slide-category label="Misc" />
-
-                <!-- Documents -->
-                <x-slide-parent icon="bi bi-file-earmark" label="Documents">
-                    <x-slide-label label="Documents" />
-
-                    <x-slide-item route="url:#" label="View all" />
-
-                    <x-slide-item route="url:#" label="Upload" />
-
-                </x-slide-parent>
-
-                <!-- Web apps category -->
-                <li class="slide__category"><span class="category-name">Web Apps</span></li>
-
-                <!-- CRM -->
-                <x-slide-parent icon="bi bi-person-rolodex" label="CRM">
-                    <x-slide-label label="CRM" />
-
-                    <x-slide-with-child label="Calls">
-
-                        <x-slide-item route="url:#" label="View all" />
-
-                        <x-slide-item route="url:#" label="Create" />
-
-                    </x-slide-with-child>
-
-                    <x-slide-with-child label="Contacts">
-
-                        <x-slide-item route="url:#" label="View all" />
-
-                        <x-slide-item route="url:#" label="Create" />
-
-                        <x-slide-item route="url:#" label="Import" />
-
-                    </x-slide-with-child>
-
-                    <x-slide-with-child label="Loops">
-
-                        <x-slide-item route="url:#" label="View all" />
-
-                        <x-slide-item route="url:#" label="Create" />
-
-                    </x-slide-with-child>
-
-                </x-slide-parent>
-
-                <!-- KB -->
-                <x-slide-parent icon="bi bi-chat-left-quote" label="Knowledge base">
-                    <x-slide-item route="url:#" label="Articles" />
-
-                    <x-slide-item route="url:#" label="Courses" />
-
-                    <x-slide-item route="url:#" label="Request an article" />
-
-                </x-slide-parent>
-
-                <!-- Settings category -->
-                <li class="slide__category"><span class="category-name">User</span></li>
-
-                <!-- User settings -->
-                <x-slide-parent icon="bi bi-gear" label="User">
-                    <x-slide-label label="User" />
-
-                    <x-slide-item route="url:#" label="Account" />
-
-                    <x-slide-item route="url:#" label="Site" />
-
-                </x-slide-parent>
 
             </ul>
             <div class="slide-right" id="slide-right">

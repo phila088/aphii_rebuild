@@ -58,13 +58,8 @@ new class extends Component
             <div class="header-element header-theme-mode">
                 <!-- Start::header-link|layout-setting -->
                 <a aria-label="anchor" href="javascript:void(0);" class="header-link layout-setting">
-                    <!-- Start::header-link-icon -->
-                    <x-bx-sun class="header-link-icon ionicon dark-layout" />
-
-                    <!-- End::header-link-icon -->
-                    <!--  Start::header-link-icon -->
-                    <x-bx-moon class="header-link-icon ionicon light-layout" />
-                    <!-- End::header-link-icon -->
+                    <i class="bx bx-sun bx-flip-horizontal header-link-icon ionicon dark:!text-slate-800 dark-layout"></i>
+                    <i class="bx bx-moon bx-flip-horizontal header-link-icon ionicon dark:!text-slate-800 light-layout"></i>
                 </a>
                 <!-- End::header-link|layout-setting -->
             </div>
@@ -73,17 +68,17 @@ new class extends Component
             <div class="header-element header-fullscreen">
                 <!-- Start::header-link -->
                 <a aria-label="anchor" onclick="openFullscreen();" href="javascript:void(0);" class="header-link">
-                    <x-bx-fullscreen class="header-link-icon full-screen-open" />
-                    <x-bx-exit-fullscreen class="header-link-icon full-screen-close hidden" />
+                    <i class="bx bx-fullscreen header-link-icon full-screen-open dark:!text-slate-800"></i>
+                    <i class="bx bx-exit-fullscreen header-link-icon full-screen-close dark:!text-slate-800 hidden"></i>
                 </a>
                 <!-- End::header-link -->
             </div>
             <!-- End::header-element -->
 
             <!-- Start::header-element -->
-            <div class="header-element mainuserProfile ms-[0.5rem]">
+            <div class="header-element mainuserProfile ms-[0.5rem] me-14">
                 <!-- Start::header-link|dropdown-toggle -->
-                <div class="hs-dropdown h-100 relative inline-flex [--offset:1] [--placement:bottom-left] min-w-[calc(11rem+2px)] justify-center">
+                <div class="hs-dropdown h-full px-4 relative inline-flex [--offset:1] [--placement:bottom-left] lg:min-w-[calc(11rem+2px)] justify-center">
                     <a href="javascript:void(0)" class="hs-dropdown-toggle dropdown-toggle h-100 flex justify-center items-center px-2">
                         <div class="flex justify-center items-center">
                             <div class="avatar avatar-md">
@@ -96,8 +91,8 @@ new class extends Component
                                         src="https://ui-avatars.com/api/?name={{ str_replace(' ', '+', auth()->user()->name) }}&background=0D8ABC&color=fff&size=128&rounded=true&bold=true&format=svg" />
                                 @endif
                             </div>
-                            <div class="ms-2 my-auto d-none d-xl-flex">
-                                <h6 class="font-semibold mb-0 text-[13px] user-name sm:block hidden">{{ Auth::user()->name }}</h6>
+                            <div class="ms-2 my-auto hidden lg:flex">
+                                <h6 class="font-semibold mb-0 text-[13px] text-gray-50 dark:!text-slate-800 user-name sm:block hidden">{{ Auth::user()->name }}</h6>
                             </div>
                         </div>
                     </a>
@@ -140,6 +135,7 @@ new class extends Component
             </div>
             <!-- End::header-element -->
 
+            {{--
             <div class="header-element">
                 <!-- Start::header-link|switcher-icon -->
                 <a aria-label="anchor" href="javascript:void(0);" class="header-link switcher-icon"
@@ -148,6 +144,7 @@ new class extends Component
                 </a>
                 <!-- End::header-link|switcher-icon -->
             </div>
+            --}}
         </div>
         <!-- End::header-content-right -->
 
