@@ -45,7 +45,7 @@ new class extends Component
                 <li class="slide">
                     <a href="{{ route('dashboard') }}" class="side-menu__item">
                         <span class="side-menu__icon">
-                            <x-bx-home />
+                            <i class="bi bi-speedometer"></i>
                         </span>
                         <span class="side-menu__label">
                             Dashboard
@@ -55,7 +55,7 @@ new class extends Component
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <span class=" side-menu__icon">
-                            <x-bx-dollar />
+                            <i class="bi bi-currency-dollar"></i>
                         </span>
                         <span class="side-menu__label tw-mt-[0.4rem]">
                             Accounting

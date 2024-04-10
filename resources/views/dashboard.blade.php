@@ -6,16 +6,16 @@
         Dashboard
     @endsection
     @section('content')
-
-        <div class="card custom-card">
-            <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-gray-900">
-                            {{ __("You're logged in!") }}
-                        </div>
-                    </div>
-                </div>
+        <div class="card custom-card w-1/4">
+            <div class="card-header">
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">
+                    Featured
+                </p>
+            </div>
+            <div class="p-4 md:p-5">
+                <p class="card-body">
+                    With supporting text below as a natural lead-in to additional content.
+                </p>
             </div>
         </div>
     @endsection

@@ -45,7 +45,7 @@
             html.style.removeProperty('--input-border');
 
             if (document.querySelector("#switcher-canvas")) {
-                document.querySelector('#switcher-header-gradient').checked = true;
+                document.querySelector('#switcher-header-dark').checked = true;
                 document.querySelector('#switcher-menu-light').checked = true;
                 document.querySelector('#switcher-light-theme').checked = true;
                 document.querySelector("#switcher-background4").checked = false;

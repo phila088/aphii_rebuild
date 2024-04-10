@@ -144,13 +144,10 @@ new class extends Component
                 <!-- Start::header-link|switcher-icon -->
                 <a aria-label="anchor" href="javascript:void(0);" class="header-link switcher-icon"
                    data-hs-overlay="#switcher-canvas">
-                    <x-bx-cog class="bx-spin header-link-icon" />
+                    <x-bx-cog class="bx-spin header-link-icon mx-[6px]" />
                 </a>
                 <!-- End::header-link|switcher-icon -->
             </div>
-
-            @include ('livewire.layout.switcher')
-
         </div>
         <!-- End::header-content-right -->
 

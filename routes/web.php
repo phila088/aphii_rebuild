@@ -1,8 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    if (!auth()->check()) {
+        return redirect('/login');
+    } else {
+        return redirect('/dashboard');
+    }
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

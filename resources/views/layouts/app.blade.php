@@ -61,31 +61,11 @@
                 <h1 class="h1 text-white">
                     @yield ('title')
                 </h1>
-                <ol class="flex items-center whitespace-nowrap">
-                    <li class="inline-flex items-center">
-                        <a class="flex items-center text-xs text-gray-200 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="#">
-                            Home
-                        </a>
-                        <svg class="flex-shrink-0 mx-2 overflow-visible size-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"></path>
-                        </svg>
-                    </li>
-                    <li class="inline-flex items-center">
-                        <a class="flex items-center text-xs text-gray-200 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="#">
-                            App Center
-                            <svg class="flex-shrink-0 mx-2 overflow-visible size-4 text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m9 18 6-6-6-6"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="inline-flex items-center text-xs font-semibold text-blue-500 truncate dark:text-gray-200" aria-current="page">
-                        Application
-                    </li>
-                </ol>
+                @yield ('breadcrumbs')
             </div>
 
             <div class="main-content app-content z-[75]">
-                <div class="container-fluid">
+                <div class="container-fluid w-100 flex">
                     @yield ('content')
                 </div>
             </div>
