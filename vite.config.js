@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/scss/styles.scss',
                 'resources/js/app.js',
+                'resources/libs/custom/custom-switcher.js',
+                'resources/libs/custom/defaultmenu.js',
             ],
             refresh: true,
         }),

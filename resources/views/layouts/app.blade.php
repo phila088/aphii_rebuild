@@ -11,7 +11,8 @@
     data-theme-mode="light"
     data-header-styles="gradient"
     data-menu-styles="dark"
-    data-nav-styl="menu-click"
+    data-vertical-style="default"
+    data-nav-style="menu-click"
     class=""
 >
     <head>
@@ -30,17 +31,16 @@
 
         @livewireStyles
 
+        <link rel="stylesheet" href="{{ asset('build/assets/libs/toastr/build/toastr.min.css') }}">
+
         @yield ('styles')
 
         <!-- Scripts -->
         @vite([
             'resources/css/app.css',
-            'resources/sass/app.scss',
+            'resources/scss/styles.scss',
             'resources/js/app.js'
         ])
-
-        <script src="{{ asset('build/assets/libs/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('build/assets/libs/custom/main.js') }}" data-navigate-track></script>
 
     </head>
     <body class="font-sans antialiased" {{ Session::has('toast') ? 'data-notification data-notification-type="' . Session::get('toast-type') . '" datanotification-message="' . Session::get('toast') . '"' : '' }}>
@@ -49,43 +49,28 @@
 
             @livewire ('layout.sidebar')
 
-            <livewire:layout.navigation />
+            <div class="page-header-breadcrumb md:flex block items-center justify-content-between ">
+                @if (isset($title))
+                    <h4 class="font-medium text-xl mb-0">
+                        {{ $title }}
+                    </h4>
+                @endif
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+                @if (isset($breadcrumbs))
+                    {{ $breadcrumbs }}
+                @endif
+            </div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="main-content app-content">
+                <div class="container-fluid">
+                    {{ $slot }}
+                </div>
+            </div>
         </div>
-    <script>
-        if (localStorage.getItem("velvetdarktheme")) {
-            document.querySelector("html").setAttribute("data-theme-mode", "dark");
-            document.querySelector("html").setAttribute("data-menu-styles", "dark");
-            document.querySelector("html").setAttribute("data-header-styles", "gradient");
-        }
-        if (localStorage.velvetlayout) {
-            let html = document.querySelector("html");
-            html.setAttribute("data-nav-layout", "horizontal");
-            document.querySelector("html").setAttribute("data-menu-styles", "gradient");
-        }
-        if (localStorage.getItem("velvetlayout") === "horizontal") {
-            document.querySelector("html").setAttribute("data-nav-layout", "horizontal");
-        }
-        if (localStorage.loaderEnable === "true") {
-            document.querySelector("html").setAttribute("loader", "enable");
-        } else {
-            if (!document.querySelector("html").getAttribute("loader")) {
-                document.querySelector("html").setAttribute("loader", "disable");
-            }
-        }
-    </script>
+        @vite('resources/libs/custom/custom-switcher.js')
+        <script src="{{ asset('build/assets/libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('build/assets/libs/custom/main.js') }}"></script>
+        <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
+        <script src="{{ asset('build/assets/libs/pickr/pickr.es5.min.js') }}" data-navigate-track></script>
     </body>
 </html>

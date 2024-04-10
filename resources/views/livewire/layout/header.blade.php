@@ -55,6 +55,19 @@ new class extends Component
 
         <!-- Start::header-content-right -->
         <div class="header-content-right">
+            <div class="header-element header-theme-mode">
+                <!-- Start::header-link|layout-setting -->
+                <a aria-label="anchor" href="javascript:void(0);" class="header-link layout-setting">
+                    <!-- Start::header-link-icon -->
+                    <x-bx-sun class="header-link-icon ionicon dark-layout" />
+
+                    <!-- End::header-link-icon -->
+                    <!--  Start::header-link-icon -->
+                    <x-bx-moon class="header-link-icon ionicon light-layout" />
+                    <!-- End::header-link-icon -->
+                </a>
+                <!-- End::header-link|layout-setting -->
+            </div>
 
             <!-- Start::header-element -->
             <div class="header-element header-fullscreen">
@@ -70,7 +83,7 @@ new class extends Component
             <!-- Start::header-element -->
             <div class="header-element mainuserProfile ms-[0.5rem]">
                 <!-- Start::header-link|dropdown-toggle -->
-                <div class="hs-dropdown h-100 relative inline-flex [--offset:0] [--trigger:hover] [--placement:bottom] border-s border-e min-w-[calc(11rem+2px)] justify-center">
+                <div class="hs-dropdown h-100 relative inline-flex [--offset:1] [--placement:bottom-left] min-w-[calc(11rem+2px)] justify-center">
                     <a href="javascript:void(0)" class="hs-dropdown-toggle dropdown-toggle h-100 flex justify-center items-center px-2">
                         <div class="flex justify-center items-center">
                             <div class="avatar avatar-md">
@@ -92,7 +105,7 @@ new class extends Component
                         <ul class="border-0 main-header-dropdown  overflow-hidden header-profile-dropdown"
                             aria-labelledby="mainHeaderProfile">
                             <li class="border-b border-b-gray-100 hover:bg-gray-100/70">
-                                <a class="dropdown-item flex items-center gap-x-1.5 px-3" href="javascript:void(0);">
+                                <a class="dropdown-item flex items-center gap-x-1.5 px-3" href="{{ route('profile') }}">
                                     <x-bx-user class="size-[14px]" />
                                     Profile
                                 </a>
@@ -127,16 +140,16 @@ new class extends Component
             </div>
             <!-- End::header-element -->
 
-            <!-- Start::header-element -->
             <div class="header-element">
                 <!-- Start::header-link|switcher-icon -->
-                <a aria-label="anchor" href="javascript:void(0);" class="header-link switcher-icon ms-1"
-                   data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
-                    <i class="bx bx-cog bx-spin header-link-icon"></i>
+                <a aria-label="anchor" href="javascript:void(0);" class="header-link switcher-icon"
+                   data-hs-overlay="#switcher-canvas">
+                    <x-bx-cog class="bx-spin header-link-icon" />
                 </a>
                 <!-- End::header-link|switcher-icon -->
             </div>
-            <!-- End::header-element -->
+
+            @include ('livewire.layout.switcher')
 
         </div>
         <!-- End::header-content-right -->

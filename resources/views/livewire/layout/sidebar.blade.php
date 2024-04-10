@@ -42,21 +42,37 @@ new class extends Component
                 <x-slide-category label="Main" />
 
                 <!-- Dashboards -->
-                <x-slide-parent icon="bi bi-speedometer" label="Dashboards">
-                    <x-slide-label label="Dashboards" />
+                <li class="slide">
+                    <a href="{{ route('dashboard') }}" class="side-menu__item">
+                        <span class="side-menu__icon">
+                            <x-bx-home />
+                        </span>
+                        <span class="side-menu__label">
+                            Dashboard
+                        </span>
+                    </a>
+                </li>
+                <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
+                        <span class=" side-menu__icon">
+                            <x-bx-dollar />
+                        </span>
+                        <span class="side-menu__label tw-mt-[0.4rem]">
+                            Accounting
+                        </span>
+                        <x-feathericon-chevron-right class="side-menu__angle tw-mt-[0.3rem]" />
+                    </a>
 
-                    <x-slide-item route="url:#" label="Personal" />
-
-                    <x-slide-item route="url:#" label="Payables" />
-
-                    <x-slide-item route="url:#" label="Receivables" />
-
-                    <x-slide-item route="url:#" label="Quoting" />
-
-                    <x-slide-item route="url:#" label="Sales" />
-
-                    <x-slide-item route="url:#" label="Work Orders" />
-                </x-slide-parent>
+                    <ul class="slide-menu child1">
+                        <li class="slide">
+                            <a href="#" class="side-menu__item">
+                                <span class="side-menu__label">
+                            Dashboard
+                        </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- Accounting -->
                 <x-slide-parent icon="bi bi-bank" label="Accounting">
