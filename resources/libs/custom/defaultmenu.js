@@ -804,7 +804,7 @@ function switcherArrowFn() {
         slideMenu.forEach((element, index) => {
             if (element.classList.contains("open") == true) {
                 element.classList.remove("open");
-                element.style.display = "none";
+                element.style.display = "hidden";
             }
         });
     }
@@ -832,15 +832,15 @@ function switcherArrowFn() {
                         Number(menuNav.style.marginLeft.split("px")[0]) +
                         Math.abs(mainContainer1Width) +
                         "px";
-                    slideRight.classList.remove("d-none");
+                    slideRight.classList.remove("hidden");
                 } else if (marginLeftValue >= 0) {
                     menuNav.style.marginLeft = "0px";
                     slideLeft.classList.add("d-none");
-                    slideRight.classList.remove("d-none");
+                    slideRight.classList.remove("hidden");
                 } else {
                     menuNav.style.marginLeft = "0px";
                     slideLeft.classList.add("d-none");
-                    slideRight.classList.remove("d-none");
+                    slideRight.classList.remove("hidden");
                 }
             } else {
                 if (
@@ -852,21 +852,21 @@ function switcherArrowFn() {
                         Number(menuNav.style.marginRight.split("px")[0]) +
                         Math.abs(mainContainer1Width) +
                         "px";
-                    slideRight.classList.remove("d-none");
+                    slideRight.classList.remove("hidden");
                 } else if (marginRightValue >= 0) {
                     menuNav.style.marginRight = "0px";
-                    slideLeft.classList.add("d-none");
-                    slideRight.classList.remove("d-none");
+                    slideLeft.classList.add("hidden");
+                    slideRight.classList.remove("hidden");
                 } else {
                     menuNav.style.marginRight = "0px";
-                    slideLeft.classList.add("d-none");
-                    slideRight.classList.remove("d-none");
+                    slideLeft.classList.add("hidden");
+                    slideRight.classList.remove("hidden");
                 }
             }
         } else {
             document.querySelector(".main-menu").style.marginLeft = "0px";
             document.querySelector(".main-menu").style.marginRight = "0px";
-            slideLeft.classList.add("d-none");
+            slideLeft.classList.add("hidden");
         }
 
         let element = document.querySelector(".main-menu > .slide.open");
@@ -902,13 +902,13 @@ function switcherArrowFn() {
                         !(Math.abs(check) > Math.abs(marginLeftValue) + mainContainer1Width)
                     ) {
                         mainContainer1Width = Math.abs(check) - Math.abs(marginLeftValue);
-                        slideRight.classList.add("d-none");
+                        slideRight.classList.add("hidden");
                     }
                     menuNav.style.marginLeft =
                         Number(menuNav.style.marginLeft.split("px")[0]) -
                         Math.abs(mainContainer1Width) +
                         "px";
-                    slideLeft.classList.remove("d-none");
+                    slideLeft.classList.remove("hidden");
                 }
             } else {
                 if (Math.abs(check) > Math.abs(marginRightValue)) {
@@ -920,13 +920,13 @@ function switcherArrowFn() {
                         )
                     ) {
                         mainContainer1Width = Math.abs(check) - Math.abs(marginRightValue);
-                        slideRight.classList.add("d-none");
+                        slideRight.classList.add("hidden");
                     }
                     menuNav.style.marginRight =
                         Number(menuNav.style.marginRight.split("px")[0]) -
                         Math.abs(mainContainer1Width) +
                         "px";
-                    slideLeft.classList.remove("d-none");
+                    slideLeft.classList.remove("hidden");
                 }
             }
         }
@@ -959,11 +959,11 @@ export function checkHoriMenu() {
     let check = menuNav.scrollWidth - mainContainer1.offsetWidth;
     // Show/Hide the arrows
     if (menuNav.scrollWidth > mainContainer1.offsetWidth) {
-        slideRight.classList.remove("d-none");
-        slideLeft.classList.add("d-none");
+        slideRight.classList.remove("hidden");
+        slideLeft.classList.add("hidden");
     } else {
-        slideRight.classList.add("d-none");
-        slideLeft.classList.add("d-none");
+        slideRight.classList.add("hidden");
+        slideLeft.classList.add("hidden");
         menuNav.style.marginLeft = "0px";
         menuNav.style.marginRight = "0px";
     }
@@ -972,32 +972,32 @@ export function checkHoriMenu() {
         if (menuNav.scrollWidth > mainContainer1.offsetWidth) {
             if (Math.abs(check) < Math.abs(marginLeftValue)) {
                 menuNav.style.marginLeft = -check + "px";
-                slideLeft.classList.remove("d-none");
-                slideRight.classList.add("d-none");
+                slideLeft.classList.remove("hidden");
+                slideRight.classList.add("hidden");
             }
         }
         if (marginLeftValue == 0) {
-            slideLeft.classList.add("d-none");
+            slideLeft.classList.add("hidden");
         } else {
-            slideLeft.classList.remove("d-none");
+            slideLeft.classList.remove("hidden");
         }
     } else {
         // RTL check the width and adjust the menu in screen
         if (menuNav.scrollWidth > mainContainer1.offsetWidth) {
             if (Math.abs(check) < Math.abs(marginRightValue)) {
                 menuNav.style.marginRight = -check + "px";
-                slideLeft.classList.remove("d-none");
-                slideRight.classList.add("d-none");
+                slideLeft.classList.remove("hidden");
+                slideRight.classList.add("hidden");
             }
         }
         if (marginRightValue == 0) {
-            slideLeft.classList.add("d-none");
+            slideLeft.classList.add("hidden");
         } else {
-            slideLeft.classList.remove("d-none");
+            slideLeft.classList.remove("hidden");
         }
     }
     if (marginLeftValue != 0 || marginRightValue != 0) {
-        slideLeft.classList.remove("d-none");
+        slideLeft.classList.remove("hidden");
     }
 }
 
@@ -1011,9 +1011,9 @@ export function checkHoriMenu() {
                 let mainContainer1 = document.querySelector(".main-sidebar");
                 setTimeout(() => {
                     if (menuNav.offsetWidth > mainContainer1.offsetWidth) {
-                        document.getElementById("slide-right").classList.remove("d-none");
+                        document.getElementById("slide-right").classList.remove("hidden");
                     } else {
-                        document.getElementById("slide-right").classList.add("d-none");
+                        document.getElementById("slide-right").classList.add("hidden");
                     }
                 }, 100);
             });

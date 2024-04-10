@@ -8,6 +8,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/scss/styles.scss',
+                'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/libs/custom/custom-switcher.js',
                 'resources/libs/custom/defaultmenu.js',
@@ -18,6 +19,7 @@ export default defineConfig({
             targets: [
                 {
                     src: ([
+                        'resources/icon-fonts',
                         'resources/img/',
                         'resources/libs/'
                     ]),

@@ -583,7 +583,7 @@ function switcherClick() {
             document.querySelector(".main-menu").style.marginLeft = "0px";
             document.querySelector(".main-menu").style.marginRight = "0px";
             ResizeMenu();
-            document.querySelector("#slide-left").classList.add("hidden");
+            document.querySelector("#slide-left").classList.add("d-none");
         }
     });
     /* icon Click Sidemenu End */
@@ -602,7 +602,7 @@ function switcherClick() {
             document.querySelector(".main-menu").style.marginLeft = "0px";
             document.querySelector(".main-menu").style.marginRight = "0px";
             ResizeMenu();
-            document.querySelector("#slide-left").classList.add("hidden");
+            document.querySelector("#slide-left").classList.add("d-none");
         }
     });
     /* icon hover Sidemenu End */
@@ -626,7 +626,7 @@ function switcherClick() {
                 element.classList.contains("open") &&
                 !element.classList.contains("active")
             ) {
-                element.querySelector("ul").style.display = "hidden";
+                element.querySelector("ul").style.display = "none";
             }
         });
     });
@@ -684,7 +684,7 @@ function switcherClick() {
                 element.classList.contains("open") &&
                 !element.classList.contains("active")
             ) {
-                element.querySelector("ul").style.display = "hidden";
+                element.querySelector("ul").style.display = "none";
             }
         });
     });
@@ -705,11 +705,11 @@ function switcherClick() {
 
 function ltrFn() {
     let html = document.querySelector("html");
-    if (!document.querySelector("#style").href.includes("bootstrap.min.css")) {
-        document
-            .querySelector("#style")
-            ?.setAttribute("href", "http://127.0.0.1:8000/build/assets/libs/bootstrap/css/bootstrap.min.css");
-    }
+    // if (!document.querySelector("#style").href.includes("bootstrap.min.css")) {
+    //     document
+    //         .querySelector("#style")
+    //         ?.setAttribute("href", "http://127.0.0.1:8000/build/assets/libs/bootstrap/css/bootstrap.min.css");
+    // }
     html.setAttribute("dir", "ltr");
     document.querySelector("#switcher-ltr").checked = true;
     checkOptions();
@@ -717,13 +717,14 @@ function ltrFn() {
 
 function rtlFn() {
     let html = document.querySelector("html");
-    html.setAttribute("dir", "rtl");
-    document
-        .querySelector("#style")
-        ?.setAttribute(
-            "href",
-            "http://127.0.0.1:8000/build/assets/libs/bootstrap/css/bootstrap.rtl.min.css"
-        );
+    //html.setAttribute("dir", "rtl");
+    // document
+    //     .querySelector("#style")
+    //     ?.setAttribute(
+    //         "href",
+    //         "http://127.0.0.1:8000/build/assets/libs/bootstrap/css/bootstrap.rtl.min.css"
+    //     );
+    alert ('RTL support is currently unavailable.')
     checkOptions();
 }
 

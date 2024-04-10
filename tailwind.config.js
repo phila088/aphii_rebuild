@@ -8,6 +8,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         'node_modules/preline/dist/*.js',
+        './resources/sass/app.scss',
     ],
     darkMode: ['selector', '[data-theme-mode="dark"]'],
     theme: {
