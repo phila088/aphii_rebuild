@@ -46,6 +46,7 @@
                 </div>
                 <div id="addresses" class="hidden" role="tabpanel" aria-labelledby="addresses">
                     <livewire:employee.company-addresses.list :company="$company"/>
+                    <livewire:employee.company-addresses.create :company="$company" />
                 </div>
                 <div id="emails" class="hidden" role="tabpanel" aria-labelledby="emails">
                     <p class="text-gray-500 dark:text-gray-400">
@@ -91,6 +92,12 @@
                     })
                     Livewire.on('company-edit', () => {
                         toastr['success']('Company successfully updated.')
+                    })
+                    Livewire.on('company-address-created', () => {
+                        toastr['success']('Company address created successfully.')
+                    })
+                    Livewire.on('test', (rowId) => {
+                        toastr['info']('Event emitted properly: ' + rowId)
                     })
                 })
             </script>
