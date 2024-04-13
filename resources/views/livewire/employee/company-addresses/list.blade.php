@@ -31,6 +31,9 @@ new class extends Component {
 
 <div>
     <div class="card custom-card">
+        <div class="card-header">
+            <h2>All addresses</h2>
+        </div>
         <div class="card-body">
             <livewire:CompanyAddressTable :company="$company"/>
         </div>

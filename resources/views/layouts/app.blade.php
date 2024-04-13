@@ -78,6 +78,7 @@
         </div>
 
         @vite('resources/libs/custom/custom-switcher.js')
+        @livewire('wire-elements-modal')
         <script src="{{ asset('build/assets/libs/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/custom/main.js') }}"></script>
         <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
