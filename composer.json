@@ -8,12 +8,16 @@
         "php": "^8.2",
         "blade-ui-kit/blade-icons": "^1.6",
         "brunocfalcao/blade-feather-icons": "^4.0",
+        "kalnoy/nestedset": "^6.0",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
+        "laravel/pulse": "^1.0@beta",
+        "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
         "mallardduck/blade-boxicons": "^2.4",
+        "openspout/openspout": "^4.23",
         "power-components/livewire-powergrid": "^5.4",
         "spatie/laravel-permission": "*"
     },
@@ -69,6 +73,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }

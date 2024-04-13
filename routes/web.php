@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthCheckMiddleware;
 
 Route::get('/', function () {
     if (!auth()->check()) {
@@ -20,7 +22,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::middleware(['auth', 'verified'])
+Route::middleware(['auth', 'verified', 'lockCheck'])
     ->group(function () {
         Route::prefix('admin')
             ->name('admin.')
@@ -30,6 +32,15 @@ Route::middleware(['auth', 'verified'])
                     ->group(function () {
                         Route::get('/', [UserController::class, 'index'])
                             ->name('index');
+
+                        Route::get('create', [UserController::class, 'create'])
+                            ->name('create');
+
+                        Route::get('edit/{id}', [UserController::class, 'edit'])
+                            ->name('edit');
+
+                        Route::get('gates', [UserController::class, 'gates'])
+                            ->name('gates');
                     });
             });
 
@@ -39,7 +50,20 @@ Route::middleware(['auth', 'verified'])
 
         Route::prefix('employee')
             ->name('employee.')
-            ->group(function () {});
+            ->group(function () {
+                Route::prefix('companies')
+                    ->name('companies.')
+                    ->group(function () {
+                        Route::get('/', [CompanyController::class, 'index'])
+                            ->name('index');
+
+                        Route::get('create', [CompanyController::class, 'create'])
+                            ->name('create');
+
+                        Route::get('edit/{id}', [CompanyController::class, 'edit'])
+                            ->name('edit');
+                    });
+            });
 
         Route::prefix('vendor')
             ->name('vendor.')

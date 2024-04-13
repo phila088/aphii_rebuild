@@ -10,8 +10,7 @@ export default {
         'node_modules/preline/dist/*.js',
         './resources/sass/app.scss',
         './app/Http/Livewire/**/*Table.php',
-        './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
-        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php'
+        './app/Helpers/PowerGridThemes/TailwindCustom.php'
     ],
     darkMode: ['selector', '[data-theme-mode="dark"]'],
     theme: {

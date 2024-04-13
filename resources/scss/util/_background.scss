@@ -359,45 +359,6 @@
     color: $custom-black;
 }
 
-/* End:: outline colors */
-
-/* Start::gray set */
-.bg-gray-100 {
-    background-color: $gray-1;
-}
-
-.bg-gray-200 {
-    background-color: $gray-2;
-}
-
-.bg-gray-300 {
-    background-color: $gray-3;
-}
-
-.bg-gray-400 {
-    background-color: $gray-4;
-}
-
-.bg-gray-500 {
-    background-color: $gray-5;
-}
-
-.bg-gray-600 {
-    background-color: $gray-6;
-}
-
-.bg-gray-700 {
-    background-color: $gray-7;
-}
-
-.bg-gray-800 {
-    background-color: $gray-8;
-}
-
-.bg-gray-900 {
-    background-color: $gray-9;
-}
-
 /* End::gray set */
 
 
@@ -482,85 +443,7 @@
     }
 }
 
-.bg-pink-transparent {
-    background-color: rgba(var(--pink-rgb), 0.1) !important;
-    color: $pink !important;
 
-    &:hover {
-        background-color: rgba(var(--pink-rgb), 0.1) !important;
-        color: $pink !important;
-    }
-}
-
-.bg-orange-transparent {
-    background-color: rgba(var(--orange-rgb), 0.1) !important;
-    color: $orange !important;
-
-    &:hover {
-        background-color: rgba(var(--orange-rgb), 0.1) !important;
-        color: $orange !important;
-    }
-}
-
-.bg-purple-transparent {
-    background-color: rgba(var(--purple-rgb), 0.1) !important;
-    color: $purple !important;
-
-    &:hover {
-        background-color: rgba(var(--purple-rgb), 0.1) !important;
-        color: $purple !important;
-    }
-}
-
-.bg-teal-transparent {
-    background-color: rgba(var(--teal-rgb), 0.1) !important;
-    color: $teal !important;
-
-    &:hover {
-        background-color: rgba(var(--teal-rgb), 0.1) !important;
-        color: $teal !important;
-    }
-}
-
-.bg-green-transparent {
-    background-color: rgba($green, 0.1) !important;
-    color: $green !important;
-
-    &:hover {
-        background-color: rgba($green, 0.1) !important;
-        color: $green !important;
-    }
-}
-
-.bg-indigo-transparent {
-    background-color: rgba($indigo, 0.1) !important;
-    color: $indigo !important;
-
-    &:hover {
-        background-color: rgba($indigo, 0.1) !important;
-        color: $indigo !important;
-    }
-}
-
-.bg-yellow-transparent {
-    background-color: rgba($yellow, 0.1) !important;
-    color: $yellow !important;
-
-    &:hover {
-        background-color: rgba($yellow, 0.1) !important;
-        color: $yellow !important;
-    }
-}
-
-.bg-blue-transparent {
-    background-color: rgba($blue, 0.1) !important;
-    color: $blue !important;
-
-    &:hover {
-        background-color: rgba($blue, 0.1) !important;
-        color: $blue !important;
-    }
-}
 
 /* End::background transparent */
 

@@ -40,9 +40,9 @@
 
         <!-- Scripts -->
         @vite([
+            'resources/scss/styles.scss',
             'resources/css/app.css',
             'resources/sass/app.scss',
-            'resources/scss/styles.scss',
             'resources/js/app.js'
         ])
 
@@ -64,7 +64,7 @@
                 @yield ('breadcrumbs')
             </div>
 
-            <div class="main-content app-content z-[75]">
+            <div class="main-content app-content">
                 <div class="container-fluid !w-full px-4 flex">
                     @yield ('content')
                 </div>
@@ -75,7 +75,6 @@
             <div class="scrollToTop">
                 <span class="arrow"><i class="ri-arrow-up-circle-fill fs-20"></i></span>
             </div>
-            <div id="responsive-overlay"></div>
         </div>
 
         @vite('resources/libs/custom/custom-switcher.js')
@@ -84,5 +83,42 @@
         <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/pickr/pickr.es5.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/popperjs/core/umd/popper.min.js') }}"></script>
+        <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
+
+        <script>
+            document.addEventListener("livewire:navigated", function() {
+                if (document.body.hasAttribute('data-notification')) {
+                    let types = ['success', 'info', 'warning', 'error']
+                    let type = '{{ Session::get('toast_type') }}'
+                    let message = "{{ Session::get('toast') }}"
+
+                    if (!types.includes(type)) {
+                        type = 'info'
+                    }
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "1000",
+                        "hideDuration": "1000",
+                        "timeOut": "10000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+
+                    toastr[type](message)
+                }
+            });
+        </script>
+
+        @yield ('scripts')
     </body>
 </html>

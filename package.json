@@ -16,10 +16,12 @@
         "vite-plugin-static-copy": "^1.0.2"
     },
     "dependencies": {
+        "flatpickr": "^4.6.13",
         "jquery": "^3.7.1",
         "preline": "^2.1.0",
         "resize-observer-polyfill": "^1.5.1",
         "sass": "^1.74.1",
-        "simplebar": "^6.2.5"
+        "simplebar": "^6.2.5",
+        "toastr": "^2.1.4"
     }
 }
