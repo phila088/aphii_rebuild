@@ -8,9 +8,5 @@
             Save
             <i class="fe fe-save"></i>
         </button>
-        <button type="reset" class="btn-red btn-sm rounded">
-            Reset
-            <i class="bi bi-arrow-clockwise"></i>
-        </button>
     </div>
 </div>

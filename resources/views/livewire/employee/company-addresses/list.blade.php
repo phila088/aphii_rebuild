@@ -15,7 +15,7 @@ new class extends Component {
 
     }
 
-    #[On('company-address-edit')]
+    #[On('company-addresses-edit')]
     public function getModel(): void
     {
         $this->companyAddress = CompanyAddress::find($this->id);
@@ -43,13 +43,11 @@ new class extends Component {
             <livewire:employee.company-addresses.edit :companyAddress="$companyAddress" />
         </div>
     @endif
-    @section ('scripts')
-        <script>
-            document.addEventListener('livewire:initialized', () => {
-                Livewire.on('company-address-edit', (rowId) => {
-                    @this.set('id', rowId)
-                })
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('company-addresses-edit', (rowId) => {
+                @this.set('id', rowId[0])
             })
-        </script>
-    @endsection
+        })
+    </script>
 </div>

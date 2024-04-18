@@ -86,70 +86,108 @@ new class extends Component
                     </li>
                 @endcanany
 
+                @canany (['clients.view', 'clients.create'])
+                    <li class="slide has-sub">
+                        <a href="javascript:void(0);" class="side-menu__item">
+                            <span class=" side-menu__icon">
+                                <i class="bi bi-people"></i>
+                            </span>
+                            <span class="side-menu__label mt-[0.3rem]">
+                                Clients
+                            </span>
+                            <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                        </a>
+                        @canany (['clients.viewAny', 'clients.create'])
+                            <ul class="slide-menu child2">
+                                @can ('clients.viewAny')
+                                    <li class="slide">
+                                        <a href="{{ route('employee.clients.index') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                View
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can ('clients.create')
+                                    <li class="slide">
+                                        <a href="{{ route('employee.clients.create') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Create
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        @endcanany
+                    </li>
+                @endcanany
+
                 <li class="slide__category"><span class="category-name"><hr /></span></li>
 
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <span class=" side-menu__icon">
-                            <i class="bi bi-sliders"></i>
-                        </span>
-                        <span class="side-menu__label mt-[0.3rem]">
-                            Admin
-                        </span>
-                        <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
-                    </a>
+                @hasrole('Super Admin')
+                    <li class="slide has-sub">
+                        <a href="javascript:void(0);" class="side-menu__item">
+                            <span class=" side-menu__icon">
+                                <i class="bi bi-sliders"></i>
+                            </span>
+                            <span class="side-menu__label mt-[0.3rem]">
+                                Admin
+                            </span>
+                            <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                        </a>
 
-                    <ul class="slide-menu child1">
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <span class="side-menu__label">
-                                    Links
-                                </span>
-                                <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
-                            </a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="https://rebuild.aphii.co/pulse" target="_blank" class="side-menu__item">
-                                        <span class="side-menu__label">
-                                            Pulse
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="slide">
-                                    <a href="https://rebuild.aphii.co/telescope" target="_blank" class="side-menu__item">
-                                        <span class="side-menu__label">
-                                            Telescope
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <span class="side-menu__label">
-                                    Users
-                                </span>
-                                <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
-                            </a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="{{ route('admin.users.gates') }}" class="side-menu__item">
-                                        <span class="side-menu__label">
-                                            Gates
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ route('admin.users.index') }}" class="side-menu__item">
-                                        <span class="side-menu__label">
-                                            View
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                        <ul class="slide-menu child1">
+                            <li class="slide has-sub">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <span class="side-menu__label">
+                                        Links
+                                    </span>
+                                    <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                                </a>
+                                <ul class="slide-menu child2">
+                                    <li class="slide">
+                                        <a href="https://rebuild.aphii.co/pulse" target="_blank" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Pulse
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="https://rebuild.aphii.co/telescope" target="_blank" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Telescope
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="slide has-sub">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <span class="side-menu__label">
+                                        Users
+                                    </span>
+                                    <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                                </a>
+                                <ul class="slide-menu child2">
+                                    <li class="slide">
+                                        <a href="{{ route('admin.users.gates') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Gates
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="{{ route('admin.users.index') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                View
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                @endhasrole
 
             </ul>
             <div class="slide-right" id="slide-right">

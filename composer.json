@@ -18,8 +18,15 @@
         "livewire/volt": "^1.0",
         "mallardduck/blade-boxicons": "^2.4",
         "openspout/openspout": "^4.23",
+        "owen-it/laravel-auditing": "^13.6",
         "power-components/livewire-powergrid": "^5.4",
+        "spatie/calendar-links": "^1.11",
+        "spatie/enum": "^3.13",
+        "spatie/laravel-enum": "^3.0",
+        "spatie/laravel-model-states": "^2.7",
+        "spatie/laravel-model-status": "^1.15",
         "spatie/laravel-permission": "*",
+        "spatie/laravel-tags": "^4.6",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {

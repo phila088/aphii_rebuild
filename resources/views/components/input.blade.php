@@ -5,7 +5,12 @@ $placeholder = (!empty($placeholder)) ? $placeholder : '';
 @endphp
 
 <div class="flex justify-between items-center">
-    <label for="{{ $id }}" class="input-label">{{ $label }}</label>
+    @empty ($label)
+        <p></p>
+    @else
+        <label for="{{ $id }}" class="input-label">{{ $label }}</label>
+    @endempty
+
 </div>
 <input type="{{ $type }}" id="{{ $id }}" {{ $live === 'true' ? 'wire:model.live='.$model : 'wire:model='.$model }} {{ $attributes->merge(['class' => "input input-".$size]) }}>
 <x-input-error :messages="$errors->get($model)" class="text-xs text-red-500 mt-2"/>

@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name', 50)->nullable();
             $table->string('dba', 50)->nullable();
             $table->string('abbreviation', 10)->nullable();
@@ -19,7 +19,7 @@ return new class extends Migration {
 
         Schema::create('client_onboardings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration {
 
         Schema::create('client_contracts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('contract_number', 20)->nullable();
             $table->date('start_date')->nullable();
@@ -44,7 +44,7 @@ return new class extends Migration {
 
         Schema::create('client_service_charges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('type')->nullable();
             $table->decimal('amount', 10, 2)->nullable();
@@ -55,7 +55,7 @@ return new class extends Migration {
 
         Schema::create('client_contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('first_name', 50)->nullable();
             $table->string('last_name', 50)->nullable();
@@ -70,7 +70,7 @@ return new class extends Migration {
 
         Schema::create('client_calls', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_contact_id')->nullable()->constrained('client_contacts')->cascadeOnDelete()->cascadeOnUpdate();
             $table->dateTime('call_date')->nullable();
@@ -81,7 +81,7 @@ return new class extends Migration {
 
         Schema::create('client_notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('note')->nullable();
             $table->softDeletes();
@@ -89,8 +89,9 @@ return new class extends Migration {
         });
 
         Schema::create('client_billing_instructions', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('instructions')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -98,8 +99,9 @@ return new class extends Migration {
 
         Schema::create('client_rate', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 50)->default('Standard');
             $table->boolean('default')->default(false);
             $table->decimal('standard_assessment')->default(0);
@@ -149,7 +151,7 @@ return new class extends Migration {
 
         Schema::create('client_portals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name', 50);
             $table->string('description', 500)->nullable();

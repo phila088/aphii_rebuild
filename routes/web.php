@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,19 @@ Route::middleware(['auth', 'verified', 'lockCheck'])
                             ->name('create');
 
                         Route::get('edit/{id}', [CompanyController::class, 'edit'])
+                            ->name('edit');
+                    });
+
+                Route::prefix('clients')
+                    ->name('clients.')
+                    ->group(function () {
+                        Route::get('/', [ClientController::class, 'index'])
+                            ->name('index');
+
+                        Route::get('create', [ClientController::class, 'create'])
+                            ->name('create');
+
+                        Route::get('edit/{id}', [ClientController::class, 'edit'])
                             ->name('edit');
                     });
             });

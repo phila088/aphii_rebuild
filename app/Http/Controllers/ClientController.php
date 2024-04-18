@@ -3,18 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Company;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ClientController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index()
+    public function index(): View
     {
-        $this->authorize('viewAny', Client::class);
+        $this->authorize('clients.viewAny');
 
-        return Client::all();
+        return view('employee.clients.index');
+    }
+
+    public function create(): View
+    {
+        $this->authorize('clients.create');
+
+        return view('employee.clients.create');
+    }
+
+    public function edit($id): View
+    {
+        $this->authorize('clients.edit');
+
+        $client = Client::where('id', $id)->firstOrFail();
+
+        return view('employee.clients.edit', ['client' => $client]);
     }
 
     public function store(Request $request)

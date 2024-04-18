@@ -86,6 +86,8 @@
         <script src="{{ asset('build/assets/libs/popperjs/core/umd/popper.min.js') }}"></script>
         <script src="{{ asset('build/assets/libs/toastr/build/toastr.min.js') }}"></script>
 
+        @yield ('scripts')
+
         <script>
             document.addEventListener("livewire:navigated", function() {
                 if (document.body.hasAttribute('data-notification')) {
@@ -119,7 +121,5 @@
                 }
             });
         </script>
-
-        @yield ('scripts')
     </body>
 </html>

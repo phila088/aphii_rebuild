@@ -36,7 +36,7 @@
                         </nav>
                     </div>
                     <div>
-                        <a href="#" class="btn-lime btn-sm rounded-md">Create</a>
+
                     </div>
                 </div>
             </div>
@@ -49,57 +49,55 @@
                     <livewire:employee.company-addresses.create :company="$company" />
                 </div>
                 <div id="emails" class="hidden" role="tabpanel" aria-labelledby="emails">
-                    <p class="text-gray-500 dark:text-gray-400">
-                        This is the <em class="font-semibold text-gray-800 dark:text-gray-200">third</em> item's tab body.
-                    </p>
+                    <livewire:employee.company-emails.list :company="$company" />
+                    <livewire:employee.company-emails.create :company="$company" />
                 </div>
                 <div id="hours" class="hidden" role="tabpanel" aria-labelledby="hours">
-                    <p class="text-gray-500 dark:text-gray-400">
-                        This is the <em class="font-semibold text-gray-800 dark:text-gray-200">third</em> item's tab body.
-                    </p>
+                    <livewire:employee.company-hours.list :company="$company" />
+                    <livewire:employee.company-hours.create :company="$company" />
                 </div>
                 <div id="phone-numbers" class="hidden" role="tabpanel" aria-labelledby="phone-numbers">
-                    <p class="text-gray-500 dark:text-gray-400">
-                        This is the <em class="font-semibold text-gray-800 dark:text-gray-200">third</em> item's tab body.
-                    </p>
+                    <livewire:employee.company-phone-numbers.list :company="$company" />
+                    <livewire:employee.company-phone-numbers.create :company="$company" />
                 </div>
             </div>
         </div>
-    @endsection
-        @section ('scripts')
-            <script>
-                document.addEventListener('livewire:initialized', () => {
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": true,
-                        "progressBar": true,
-                        "positionClass": "toast-bottom-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "1000",
-                        "hideDuration": "1000",
-                        "timeOut": "10000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+        <script>
+            document.addEventListener('livewire:initialized', () => {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
 
-                    Livewire.on('error', () => {
-                        toastr['error']('There was an unknown error, please try again.')
-                    })
-                    Livewire.on('company-edit', () => {
-                        toastr['success']('Company successfully updated.')
-                    })
-                    Livewire.on('company-address-created', () => {
-                        toastr['success']('Company address created successfully.')
-                    })
-                    Livewire.on('test', (rowId) => {
-                        toastr['info']('Event emitted properly: ' + rowId)
-                    })
+                Livewire.on('error', () => {
+                    toastr['error']('There was an unknown error, please try again.')
                 })
-            </script>
-        @endsection
+                Livewire.on('company-edit', () => {
+                    toastr['success']('Company successfully updated.')
+                })
+                Livewire.on('company-address-created', () => {
+                    toastr['success']('Company address created successfully.')
+                })
+                Livewire.on('company-email-created', () => {
+                    toastr['success']('Company email created successfully.')
+                })
+                Livewire.on('company-phone-created', () => {
+                    toastr['success']('Company phone created successfully.')
+                })
+            })
+        </script>
+    @endsection
 </x-app-layout>
