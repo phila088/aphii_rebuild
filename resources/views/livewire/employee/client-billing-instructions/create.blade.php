@@ -75,26 +75,8 @@ new class extends Component {
     @endassets
     @script
     <script>
-        const watchdog = new CKSource.EditorWatchdog();
         let eEditor;
-
-        window.watchdog = watchdog;
-
-        watchdog.setCreator( ( element, config ) => {
-            return CKSource.Editor
-                .create( element, config )
-                .then( editor => {
-                    return editor;
-                } );
-        } );
-
-        watchdog.setDestructor( editor => {
-            return editor.destroy();
-        } );
-
-        watchdog.on( 'error', handleSampleError );
-
-        watchdog
+        const clientBillingInstructionsEditor = await CKSource.Editor
             .create( document.querySelector( '#instructions' ), {
                 removePlugins: ["MediaEmbedToolbar"],
                 toolbar: {
@@ -128,9 +110,9 @@ new class extends Component {
             .then ( editor => {
                 eEditor = editor;
             } )
-            .catch( handleSampleError );
+            .catch( handleClientBillingInstructionsError );
 
-        function handleSampleError( error ) {
+        function handleClientBillingInstructionsError( error ) {
             const issueUrl = 'https://github.com/ckeditor/ckeditor5/issues';
 
             const message = [

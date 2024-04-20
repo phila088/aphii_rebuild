@@ -45,20 +45,20 @@
                     <livewire:employee.companies.edit :company="$company" />
                 </div>
                 <div id="addresses" class="hidden" role="tabpanel" aria-labelledby="addresses">
-                    <livewire:employee.company-addresses.list :company="$company"/>
                     <livewire:employee.company-addresses.create :company="$company" />
+                    <livewire:employee.company-addresses.list :company="$company"/>
                 </div>
                 <div id="emails" class="hidden" role="tabpanel" aria-labelledby="emails">
-                    <livewire:employee.company-emails.list :company="$company" />
                     <livewire:employee.company-emails.create :company="$company" />
+                    <livewire:employee.company-emails.list :company="$company" />
                 </div>
                 <div id="hours" class="hidden" role="tabpanel" aria-labelledby="hours">
-                    <livewire:employee.company-hours.list :company="$company" />
                     <livewire:employee.company-hours.create :company="$company" />
+                    <livewire:employee.company-hours.list :company="$company" />
                 </div>
                 <div id="phone-numbers" class="hidden" role="tabpanel" aria-labelledby="phone-numbers">
-                    <livewire:employee.company-phone-numbers.list :company="$company" />
                     <livewire:employee.company-phone-numbers.create :company="$company" />
+                    <livewire:employee.company-phone-numbers.list :company="$company" />
                 </div>
             </div>
         </div>
@@ -91,8 +91,29 @@
                 Livewire.on('company-address-created', () => {
                     toastr['success']('Company address created successfully.')
                 })
+                Livewire.on('company-address-updated', () => {
+                    toastr['success']('Company address updated successfully.')
+                })
+                Livewire.on('company-addresses-deleted', () => {
+                    toastr['success']('Company address deleted successfully.')
+                })
                 Livewire.on('company-email-created', () => {
                     toastr['success']('Company email created successfully.')
+                })
+                Livewire.on('company-email-updated', () => {
+                    toastr['success']('Company email updated successfully.')
+                })
+                Livewire.on('company-email-deleted', () => {
+                    toastr['success']('Company email deleted successfully.')
+                })
+                Livewire.on('company-hours-created', () => {
+                    toastr['success']('Company hours created successfully.')
+                })
+                Livewire.on('company-hours-deleted', () => {
+                    toastr['success']('Company hours deleted successfully.')
+                })
+                Livewire.on('company-hours-updated', () => {
+                    toastr['success']('Company hours updated successfully.')
                 })
                 Livewire.on('company-phone-created', () => {
                     toastr['success']('Company phone created successfully.')

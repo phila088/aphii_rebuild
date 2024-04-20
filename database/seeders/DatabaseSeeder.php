@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
             PaymentTermSeeder::class,
             UsersSeeder::class,
             RolesSeeder::class,
-            ModelHasRoleSeeder::class
+            ModelHasRoleSeeder::class,
+            StatusCodeSeeder::class,
         ]);
     }
 }

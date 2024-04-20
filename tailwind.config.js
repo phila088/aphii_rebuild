@@ -12,6 +12,7 @@ export default {
         './app/Http/Livewire/**/*Table.php',
         './app/Helpers/PowerGridThemes/TailwindCustom.php',
         './vendor/wire-elements/modal/views/*.blade.php',
+        './app/http/Livewire/**/*Table.php',
     ],
     darkMode: ['selector', '[data-theme-mode="dark"]'],
     theme: {

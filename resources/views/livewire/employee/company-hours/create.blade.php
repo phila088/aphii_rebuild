@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use Illuminate\Support\Carbon;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
@@ -8,68 +9,102 @@ new class extends Component
 {
     public Company $company;
 
-    public string $copy_to = '';
+    public string $monday_copy_to = '';
+    public string $tuesday_copy_to = '';
+    public string $wednesday_copy_to = '';
+    public string $thursday_copy_to = '';
+    public string $friday_copy_to = '';
+    public string $saturday_copy_to = '';
+    public string $sunday_copy_to = '';
+
+    public array $timezones;
 
     #[Validate('required|int')]
     public int $company_id;
     #[Validate('required|string|min:2|max:50')]
     public string $title = '';
+    #[Validate('required|string')]
+    public string $timezone = '';
     #[Validate('nullable|string|')]
-    public string $monday_open = '';
+    public ?string $monday_open = '';
     #[Validate('nullable|string|')]
-    public string $monday_close = '';
+    public ?string $monday_close = '';
     #[Validate('nullable|string|')]
-    public string $tuesday_open = '';
+    public ?string $tuesday_open = '';
     #[Validate('nullable|string|')]
-    public string $tuesday_close = '';
+    public ?string $tuesday_close = '';
     #[Validate('nullable|string|')]
-    public string $wednesday_open = '';
+    public ?string $wednesday_open = '';
     #[Validate('nullable|string|')]
-    public string $wednesday_close = '';
+    public ?string $wednesday_close = '';
     #[Validate('nullable|string|')]
-    public string $thursday_open = '';
+    public ?string $thursday_open = '';
     #[Validate('nullable|string|')]
-    public string $thursday_close = '';
+    public ?string $thursday_close = '';
     #[Validate('nullable|string|')]
-    public string $friday_open = '';
+    public ?string $friday_open = '';
     #[Validate('nullable|string|')]
-    public string $friday_close = '';
+    public ?string $friday_close = '';
     #[Validate('nullable|string|')]
-    public string $saturday_open = '';
+    public ?string $saturday_open = '';
     #[Validate('nullable|string|')]
-    public string $saturday_close = '';
+    public ?string $saturday_close = '';
     #[Validate('nullable|string|')]
-    public string $sunday_open = '';
+    public ?string $sunday_open = '';
     #[Validate('nullable|string|')]
-    public string $sunday_close = '';
+    public ?string $sunday_close = '';
 
     public function mount(): void
     {
         $this->company_id = $this->company->id;
+        $this->timezones = (__('selects.timezones'));
+        $this->timezone = auth()->user()->userProfile->timezone;
     }
 
     public function store(): void
     {
         $this->authorize('company-hours.create');
 
+        $days = [
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+        ];
+
+        foreach ($days as $day) {
+            if ($this->{$day . '_open'} === '') {
+                $this->{$day . '_open'} = null;
+            }
+            if ($this->{$day . '_close'} === '') {
+                $this->{$day . '_close'} = null;
+            }
+        }
+
+        if ($this->timezone !== config('app.timezone')) {
+            foreach ($days as $day) {
+                if (!is_null($this->{$day . '_open'})) {
+                    $this->{$day . '_open'} = Carbon::parse($this->{$day . '_open'} . ' ' . $this->timezone)->setTimezone(config('app.timezone'))->format('H:i:s');
+                }
+                if (!is_null($this->{$day . '_close'})) {
+                    $this->{$day . '_close'} = Carbon::parse($this->{$day . '_close'} . ' ' . $this->timezone)->setTimezone(config('app.timezone'))->format('H:i:s');
+                }
+            }
+        }
+
         $validated = $this->validate();
 
-        $regex = $this->validate([
-            'monday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'monday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'tuesday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'tuesday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'wednesday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'wednesday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'thursday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'thursday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'friday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'friday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'saturday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'saturday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'sunday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'sunday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-        ]);
+        $regexArr = [];
+
+        foreach ($days as $day) {
+            $regexArr[$day . '_open'] = ['nullable', 'regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'];
+            $regexArr[$day . '_close'] = ['nullable', 'regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'];
+        }
+
+        $regex = $this->validate($regexArr);
 
         $validated = array_merge($validated, $regex);
 
@@ -96,6 +131,14 @@ new class extends Component
 
     public function copyTo(string $from, string $to): void
     {
+        $this->monday_copy_to = '';
+        $this->tuesday_copy_to = '';
+        $this->wednesday_copy_to = '';
+        $this->thursday_copy_to = '';
+        $this->friday_copy_to = '';
+        $this->saturday_copy_to = '';
+        $this->sunday_copy_to = '';
+
         switch ($to) {
             case 'monday':
                 $this->monday_open = $this->{$from.'_open'};
@@ -144,8 +187,6 @@ new class extends Component
                 $this->sunday_close = $this->{$from.'_close'};
                 break;
         }
-
-        $this->copy_to = '';
     }
 } ?>
 
@@ -163,12 +204,21 @@ new class extends Component
                         <div class="cols-3">
                             <x-input id="title" model="title" label="Title" />
                         </div>
+                        <div class="cols-3">
+                            <label for="timezone" class="input-label">Timezone</label>
+                            <select id="timezone" wire:model="timezone" class="input">
+                                <option></option>
+                                @foreach ($timezones as $timezone)
+                                    <option value="{{ $timezone }}">{{ $timezone }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="cols-1">
                         <div class="cols-7 text-center">Monday</div>
                         <div class="cols-7">
                             <label for="monday-copy-to" class="input-label">Copy to</label>
-                            <select id="monday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('monday', $el.value)">
+                            <select id="monday-copy-to" wire:model="monday_copy_to" class="input" x-on:change="$wire.copyTo('monday', $el.value)">
                                 <option></option>
                                 <option value="tuesday">Tuesday</option>
                                 <option value="wednesday">Wednesday</option>
@@ -191,7 +241,7 @@ new class extends Component
                         <div class="cols-7 text-center">Tuesday</div>
                         <div class="cols-7">
                             <label for="tuesday-copy-to" class="input-label">Copy to</label>
-                            <select id="tuesday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('tuesday', $el.value)">
+                            <select id="tuesday-copy-to" wire:model="tuesday_copy_to" class="input" x-on:change="$wire.copyTo('tuesday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="wednesday">Wednesday</option>
@@ -214,7 +264,7 @@ new class extends Component
                         <div class="cols-7 text-center">Wednesday</div>
                         <div class="cols-7">
                             <label for="wednesday-copy-to" class="input-label">Copy to</label>
-                            <select id="wednesday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('wednesday', $el.value)">
+                            <select id="wednesday-copy-to" wire:model="wednesday_copy_to" class="input" x-on:change="$wire.copyTo('wednesday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -237,7 +287,7 @@ new class extends Component
                         <div class="cols-7 text-center">Thursday</div>
                         <div class="cols-7">
                             <label for="thursday-copy-to" class="input-label">Copy to</label>
-                            <select id="thursday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('thursday', $el.value)">
+                            <select id="thursday-copy-to" wire:model="thursday_copy_to" class="input" x-on:change="$wire.copyTo('thursday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -260,7 +310,7 @@ new class extends Component
                         <div class="cols-7 text-center">Friday</div>
                         <div class="cols-7">
                             <label for="friday-copy-to" class="input-label">Copy to</label>
-                            <select id="friday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('friday', $el.value)">
+                            <select id="friday-copy-to" wire:model="friday_copy_to" class="input" x-on:change="$wire.copyTo('friday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -283,7 +333,7 @@ new class extends Component
                         <div class="cols-7 text-center">Saturday</div>
                         <div class="cols-7">
                             <label for="saturday-copy-to" class="input-label">Copy to</label>
-                            <select id="saturday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('saturday', $el.value)">
+                            <select id="saturday-copy-to" wire:model="saturday_copy_to" class="input" x-on:change="$wire.copyTo('saturday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -306,7 +356,7 @@ new class extends Component
                         <div class="cols-7 text-center">Sunday</div>
                         <div class="cols-7">
                             <label for="sunday-copy-to" class="input-label">Copy to</label>
-                            <select id="sunday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('sunday', $el.value)">
+                            <select id="sunday-copy-to" wire:model="sunday_copy_to" class="input" x-on:change="$wire.copyTo('sunday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>

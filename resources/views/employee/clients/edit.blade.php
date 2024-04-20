@@ -17,7 +17,7 @@
             <div class="card custom-card z-[10]">
                 <div class="card-header flex justify-between">
                     <div class="border-b border-gray-200 dark:border-gray-700">
-                        <nav class="flex space-x-1" aria-label="Tabs" role="tablist" id="company-tabs">
+                        <nav class="flex space-x-1 overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" aria-label="Tabs" role="tablist" id="company-tabs">
                             <button type="button" class="tab active" id="general-tab" data-hs-tab="#general" aria-controls="general" role="tab">
                                 General
                             </button>
@@ -63,11 +63,12 @@
                     <livewire:employee.client-billing-instructions.create :client="$client" />
                 </div>
                 <div id="calls" class="hidden" role="tabpanel" aria-labelledby="calls-tab">
-                    <livewire:employee.client-calls.list :client="$client" />
                     <livewire:employee.client-calls.create :client="$client" />
+                    <livewire:employee.client-calls.list :client="$client" />
                 </div>
                 <div id="contacts" class="hidden" role="tabpanel" aria-labelledby="contacts-tab">
-                    Contacts
+                    <livewire:employee.client-contacts.create :client="$client" />
+                    <livewire:employee.client-contacts.list :client="$client" />
                 </div>
                 <div id="contracts" class="hidden" role="tabpanel" aria-labelledby="contracts-tab">
                     Contracts
@@ -90,6 +91,7 @@
             </div>
         </div>
         <script>
+
             document.addEventListener('livewire:initialized', () => {
                 toastr.options = {
                     "closeButton": true,
@@ -112,17 +114,17 @@
                 Livewire.on('error', () => {
                     toastr['error']('There was an unknown error, please try again.')
                 })
-                Livewire.on('company-edit', () => {
-                    toastr['success']('Company successfully updated.')
+                Livewire.on('client-edited', () => {
+                    toastr['success']('Client successfully updated.')
                 })
-                Livewire.on('company-address-created', () => {
-                    toastr['success']('Company address created successfully.')
+                Livewire.on('client-call-created', () => {
+                    toastr['success']('Client call successfully created.')
                 })
-                Livewire.on('company-email-created', () => {
-                    toastr['success']('Company email created successfully.')
+                Livewire.on('client-contact-created', () => {
+                    toastr['success']('Client contact successfully created.')
                 })
-                Livewire.on('company-phone-created', () => {
-                    toastr['success']('Company phone created successfully.')
+                Livewire.on('client-contact-deleted', () => {
+                    toastr['success']('Client contact successfully deleted.')
                 })
             })
         </script>

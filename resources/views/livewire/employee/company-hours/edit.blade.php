@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\CompanyHour;
+use Illuminate\Support\Carbon;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
@@ -8,101 +9,122 @@ new class extends Component
 {
     public CompanyHour $companyHour;
 
-    public string $copy_to = '';
+    public string $monday_copy_to = '';
+    public string $tuesday_copy_to = '';
+    public string $wednesday_copy_to = '';
+    public string $thursday_copy_to = '';
+    public string $friday_copy_to = '';
+    public string $saturday_copy_to = '';
+    public string $sunday_copy_to = '';
+
+    public array $timezones;
 
     #[Validate('required|int')]
     public int $company_id;
     #[Validate('required|string|min:2|max:50')]
-    public string $title = '';
-    #[Validate('nullable|string|')]
-    public string $monday_open = '';
-    #[Validate('nullable|string|')]
-    public string $monday_close = '';
-    #[Validate('nullable|string|')]
-    public string $tuesday_open = '';
-    #[Validate('nullable|string|')]
-    public string $tuesday_close = '';
-    #[Validate('nullable|string|')]
-    public string $wednesday_open = '';
-    #[Validate('nullable|string|')]
-    public string $wednesday_close = '';
-    #[Validate('nullable|string|')]
-    public string $thursday_open = '';
-    #[Validate('nullable|string|')]
-    public string $thursday_close = '';
-    #[Validate('nullable|string|')]
-    public string $friday_open = '';
-    #[Validate('nullable|string|')]
-    public string $friday_close = '';
-    #[Validate('nullable|string|')]
-    public string $saturday_open = '';
-    #[Validate('nullable|string|')]
-    public string $saturday_close = '';
-    #[Validate('nullable|string|')]
-    public string $sunday_open = '';
-    #[Validate('nullable|string|')]
-    public string $sunday_close = '';
+    public ?string $title = '';
+    #[Validate('required|string')]
+    public string $timezone = '';
+    #[Validate('nullable|string')]
+    public ?string $monday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $monday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $tuesday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $tuesday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $wednesday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $wednesday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $thursday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $thursday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $friday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $friday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $saturday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $saturday_close = '';
+    #[Validate('nullable|string')]
+    public ?string $sunday_open = '';
+    #[Validate('nullable|string')]
+    public ?string $sunday_close = '';
 
     public function mount(): void
     {
+        $this->timezones = (__('selects.timezones'));
+        $this->company_id = $this->companyHour->company_id;
         $this->title = $this->companyHour->title;
-        $this->monday_open = $this->companyHour->monday_open;
-        $this->monday_close = $this->companyHour->monday_close;
-        $this->tuesday_open = $this->companyHour->tuesday_open;
-        $this->tuesday_close = $this->companyHour->tuesday_open;
-        $this->wednesday_open = $this->companyHour->tuesday_open;
-        $this->wednesday_close = $this->companyHour->tuesday_open;
-        $this->thursday_open = $this->companyHour->tuesday_open;
-        $this->thursday_close = $this->companyHour->tuesday_open;
-        $this->friday_open = $this->companyHour->tuesday_open;
-        $this->friday_close = $this->companyHour->tuesday_open;
-        $this->saturday_open = $this->companyHour->tuesday_open;
-        $this->saturday_close = $this->companyHour->tuesday_open;
-        $this->sunday_open = $this->companyHour->tuesday_open;
-        $this->sunday_close = $this->companyHour->tuesday_open;
+        $this->timezone = $this->companyHour->timezone;
+        $this->monday_open = (!empty($this->companyHour->monday_open)) ? Carbon::parse($this->companyHour->monday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->monday_close = (!empty($this->companyHour->monday_close)) ? Carbon::parse($this->companyHour->monday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->tuesday_open = (!empty($this->companyHour->tuesday_open)) ? Carbon::parse($this->companyHour->tuesday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->tuesday_close = (!empty($this->companyHour->tuesday_close)) ? Carbon::parse($this->companyHour->tuesday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->wednesday_open = (!empty($this->companyHour->wednesday_open)) ? Carbon::parse($this->companyHour->wednesday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->wednesday_close = (!empty($this->companyHour->wednesday_close)) ? Carbon::parse($this->companyHour->wednesday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->thursday_open = (!empty($this->companyHour->thursday_open)) ? Carbon::parse($this->companyHour->thursday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->thursday_close = (!empty($this->companyHour->thursday_close)) ? Carbon::parse($this->companyHour->thursday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->friday_open = (!empty($this->companyHour->friday_open)) ? Carbon::parse($this->companyHour->friday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->friday_close = (!empty($this->companyHour->friday_close)) ? Carbon::parse($this->companyHour->friday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->saturday_open = (!empty($this->companyHour->saturday_open)) ? Carbon::parse($this->companyHour->saturday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->saturday_close = (!empty($this->companyHour->saturday_close)) ? Carbon::parse($this->companyHour->saturday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->sunday_open = (!empty($this->companyHour->sunday_open)) ? Carbon::parse($this->companyHour->sunday_open . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
+        $this->sunday_close = (!empty($this->companyHour->sunday_close)) ? Carbon::parse($this->companyHour->sunday_close . ' ' . config('app.timezone'))->setTimezone($this->timezone)->format('H:i:s') : null;
     }
 
-    public function store(): void
+    public function update(): void
     {
         $this->authorize('company-hours.create');
 
+        $days = [
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+        ];
+
+        foreach ($days as $day) {
+            if ($this->{$day . '_open'} === '') {
+                $this->{$day . '_open'} = null;
+            }
+            if ($this->{$day . '_close'} === '') {
+                $this->{$day . '_close'} = null;
+            }
+        }
+
+        if ($this->timezone !== config('app.timezone')) {
+            foreach ($days as $day) {
+                if (!is_null($this->{$day . '_open'})) {
+                    $this->{$day . '_open'} = Carbon::parse($this->{$day . '_open'} . ' ' . $this->timezone)->setTimezone(config('app.timezone'))->format('H:i:s');
+                }
+                if (!is_null($this->{$day . '_close'})) {
+                    $this->{$day . '_close'} = Carbon::parse($this->{$day . '_close'} . ' ' . $this->timezone)->setTimezone(config('app.timezone'))->format('H:i:s');
+                }
+            }
+        }
+
         $validated = $this->validate();
 
-        $regex = $this->validate([
-            'monday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'monday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'tuesday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'tuesday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'wednesday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'wednesday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'thursday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'thursday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'friday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'friday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'saturday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'saturday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'sunday_close' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-            'sunday_open' => ['regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'],
-        ]);
+        $regexArr = [];
+
+        foreach ($days as $day) {
+            $regexArr[$day . '_open'] = ['nullable', 'regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'];
+            $regexArr[$day . '_close'] = ['nullable', 'regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/i'];
+        }
+
+        $regex = $this->validate($regexArr);
 
         $validated = array_merge($validated, $regex);
 
-        if (auth()->user()->companyHours()->create($validated)) {
-            $this->title = '';
-            $this->monday_open = '';
-            $this->monday_close = '';
-            $this->tuesday_open = '';
-            $this->tuesday_close = '';
-            $this->wednesday_open = '';
-            $this->wednesday_close = '';
-            $this->thursday_open = '';
-            $this->thursday_close = '';
-            $this->friday_open = '';
-            $this->friday_close = '';
-            $this->saturday_open = '';
-            $this->saturday_close = '';
-            $this->sunday_open = '';
-            $this->sunday_close = '';
+        if ($this->companyHour->update($validated)) {
+            $this->dispatch('company-hours-updated');
         }
     }
 
@@ -167,7 +189,7 @@ new class extends Component
 } ?>
 
 <div>
-    <form wire:submit="store">
+    <form wire:submit="update">
         <div class="card custom-card">
             <div class="card-header">
                 <h2>
@@ -180,12 +202,21 @@ new class extends Component
                         <div class="cols-3">
                             <x-input id="title" model="title" label="Title" />
                         </div>
+                        <div class="cols-3">
+                            <label for="timezone" class="input-label">Timezone</label>
+                            <select id="timezone" wire:model="timezone" class="input">
+                                <option></option>
+                                @foreach ($timezones as $timezone)
+                                    <option value="{{ $timezone }}">{{ $timezone }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="cols-1">
                         <div class="cols-7 text-center">Monday</div>
                         <div class="cols-7">
                             <label for="monday-copy-to" class="input-label">Copy to</label>
-                            <select id="monday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('monday', $el.value)">
+                            <select id="monday-copy-to" wire:model="monday_copy_to" class="input" x-on:change="$wire.copyTo('monday', $el.value)">
                                 <option></option>
                                 <option value="tuesday">Tuesday</option>
                                 <option value="wednesday">Wednesday</option>
@@ -208,7 +239,7 @@ new class extends Component
                         <div class="cols-7 text-center">Tuesday</div>
                         <div class="cols-7">
                             <label for="tuesday-copy-to" class="input-label">Copy to</label>
-                            <select id="tuesday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('tuesday', $el.value)">
+                            <select id="tuesday-copy-to" wire:model="tuesday_copy_to" class="input" x-on:change="$wire.copyTo('tuesday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="wednesday">Wednesday</option>
@@ -231,7 +262,7 @@ new class extends Component
                         <div class="cols-7 text-center">Wednesday</div>
                         <div class="cols-7">
                             <label for="wednesday-copy-to" class="input-label">Copy to</label>
-                            <select id="wednesday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('wednesday', $el.value)">
+                            <select id="wednesday-copy-to" wire:model="wednesday_copy_to" class="input" x-on:change="$wire.copyTo('wednesday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -254,7 +285,7 @@ new class extends Component
                         <div class="cols-7 text-center">Thursday</div>
                         <div class="cols-7">
                             <label for="thursday-copy-to" class="input-label">Copy to</label>
-                            <select id="thursday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('thursday', $el.value)">
+                            <select id="thursday-copy-to" wire:model="thursday_copy_to" class="input" x-on:change="$wire.copyTo('thursday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -277,7 +308,7 @@ new class extends Component
                         <div class="cols-7 text-center">Friday</div>
                         <div class="cols-7">
                             <label for="friday-copy-to" class="input-label">Copy to</label>
-                            <select id="friday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('friday', $el.value)">
+                            <select id="friday-copy-to" wire:model="friday_copy_to" class="input" x-on:change="$wire.copyTo('friday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -300,7 +331,7 @@ new class extends Component
                         <div class="cols-7 text-center">Saturday</div>
                         <div class="cols-7">
                             <label for="saturday-copy-to" class="input-label">Copy to</label>
-                            <select id="saturday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('saturday', $el.value)">
+                            <select id="saturday-copy-to" wire:model="saturday_copy_to" class="input" x-on:change="$wire.copyTo('saturday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -323,7 +354,7 @@ new class extends Component
                         <div class="cols-7 text-center">Sunday</div>
                         <div class="cols-7">
                             <label for="sunday-copy-to" class="input-label">Copy to</label>
-                            <select id="sunday-copy-to" wire:model="copy_to" class="input" x-on:change="$wire.copyTo('sunday', $el.value)">
+                            <select id="sunday-copy-to" wire:model="sunday_copy_to" class="input" x-on:change="$wire.copyTo('sunday', $el.value)">
                                 <option></option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>

@@ -14,6 +14,7 @@ class CompanyHour extends Model implements Auditable
         'user_id',
         'company_id',
         'title',
+        'timezone',
         'monday_open',
         'monday_close',
         'tuesday_open',

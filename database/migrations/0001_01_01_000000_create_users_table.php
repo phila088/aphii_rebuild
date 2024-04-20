@@ -54,6 +54,8 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->text('about')->nullable();
             $table->string('profile_picture_path')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
 
         Schema::create('user_profile_has_certifications', function (Blueprint $table) {

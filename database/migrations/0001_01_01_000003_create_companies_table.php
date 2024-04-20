@@ -69,6 +69,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 50);
+            $table->string('timezone');
             $table->time('monday_open')->nullable();
             $table->time('monday_close')->nullable();
             $table->time('tuesday_open')->nullable();

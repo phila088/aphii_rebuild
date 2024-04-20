@@ -66,6 +66,22 @@ return new class extends Migration {
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('status_codes', function (Blueprint $table) {
+            $table->id();
+            $table->string('for_model');
+            $table->string('code');
+            $table->string('description');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create('contact_positions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     public function down(): void
