@@ -9,21 +9,6 @@ use Livewire\Volt\Component;
 new class extends Component
 {
     public Client $client;
-
-    public Collection $clientCalls;
-
-    public function mount(): void
-    {
-        $this->getClientCalls();
-    }
-
-    public function getClientCalls(): void
-    {
-        $this->clientCalls = ClientCall::latest()
-            ->limit(10)
-            ->orderBy('call_date', 'asc')
-            ->get();
-    }
 }; ?>
 
 <div>

@@ -71,7 +71,8 @@
                     <livewire:employee.client-contacts.list :client="$client" />
                 </div>
                 <div id="contracts" class="hidden" role="tabpanel" aria-labelledby="contracts-tab">
-                    Contracts
+                    <livewire:employee.client-contracts.create :client="$client" />
+                    <livewire:employee.client-contracts.list :client="$client" />
                 </div>
                 <div id="notes" class="hidden" role="tabpanel" aria-labelledby="notes-tab">
                     Notes
@@ -125,6 +126,12 @@
                 })
                 Livewire.on('client-contact-deleted', () => {
                     toastr['success']('Client contact successfully deleted.')
+                })
+                Livewire.on('client-contract-created', () => {
+                    toastr['success']('Client contract successfully created.')
+                })
+                Livewire.on('client-contract-deleted', () => {
+                    toastr['success']('Client contract successfully deleted.')
                 })
             })
         </script>

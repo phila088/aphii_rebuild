@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('contract_number', 20)->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -59,6 +60,7 @@ return new class extends Migration {
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('first_name', 50)->nullable();
             $table->string('last_name', 50)->nullable();
+            $table->string('name', 50)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('phone_extension', 20)->nullable();

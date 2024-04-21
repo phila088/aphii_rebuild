@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DocumentCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,18 @@ Route::middleware(['auth', 'verified', 'lockCheck'])
         Route::prefix('admin')
             ->name('admin.')
             ->group(function () {
+                Route::prefix('document-categories')
+                    ->name('document-categories.')
+                    ->group(function () {
+                        Route::get('/', [DocumentCategoryController::class, 'index'])
+                            ->name('index');
+
+                        Route::get('create', [DocumentCategoryController::class, 'create'])
+                            ->name('create');
+
+                        Route::get('edit/{id}', [DocumentCategoryController::class, 'edit'])
+                            ->name('edit');
+                    });
                 Route::prefix('users')
                     ->name('users.')
                     ->group(function () {

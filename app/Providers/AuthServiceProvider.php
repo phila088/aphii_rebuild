@@ -4,9 +4,11 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Models\ContactPosition;
+use App\Models\DocumentCategory;
 use App\Models\States;
 use App\Models\StatusCode;
 use App\Policies\ContactPositionPolicy;
+use App\Policies\DocumentCategoryPolicy;
 use App\Policies\StatesPolicy;
 use App\Policies\StatusCodePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         States::class => StatesPolicy::class,
         StatusCode::class => StatusCodePolicy::class,
         ContactPosition::class => ContactPositionPolicy::class,
+        DocumentCategory::class => DocumentCategoryPolicy::class,
     ];
 
     /**

@@ -140,6 +140,30 @@ new class extends Component
                             <li class="slide has-sub">
                                 <a href="javascript:void(0);" class="side-menu__item">
                                     <span class="side-menu__label">
+                                        Document categories
+                                    </span>
+                                    <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                                </a>
+                                <ul class="slide-menu child2">
+                                    <li class="slide">
+                                        <a href="{{ route('admin.document-categories.index') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                View
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="{{ route('admin.document-categories.create') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Create
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="slide has-sub">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <span class="side-menu__label">
                                         Links
                                     </span>
                                     <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
