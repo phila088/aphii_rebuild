@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\ClientContract;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -29,12 +30,11 @@ final class ClientContractTable extends PowerGridComponent
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
-            Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),
+            Footer::make(),
         ];
     }
 
+    #[On('client-contract-created')]
     public function datasource(): Builder
     {
         return ClientContract::query();
@@ -48,20 +48,17 @@ final class ClientContractTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
-            ->add('client_id')
+            ->add('company_id_formatted', fn (ClientContract $model) => $model->company->name)
             ->add('contract_number')
-            ->add('start_date_formatted', fn (ClientContract $model) => Carbon::parse($model->start_date)->format('d/m/Y'))
-            ->add('end_date_formatted', fn (ClientContract $model) => Carbon::parse($model->end_date)->format('d/m/Y'))
-            ->add('payment_term_id')
-            ->add('created_at_formatted', fn (ClientContract $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->add('start_date_formatted', fn (ClientContract $model) => Carbon::parse($model->start_date)->timezone(auth()->user()->userProfile->timezone)->format('d/m/Y'))
+            ->add('end_date_formatted', fn (ClientContract $model) => Carbon::parse($model->end_date)->timezone(auth()->user()->userProfile->timezone)->format('d/m/Y'))
+            ->add('payment_term_id_formatted', fn (ClientContract $model) => $model->paymentTerm->code);
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Client id', 'client_id'),
+            Column::make('Company', 'company_id_formatted'),
             Column::make('Contract number', 'contract_number')
                 ->sortable()
                 ->searchable(),
@@ -72,9 +69,7 @@ final class ClientContractTable extends PowerGridComponent
             Column::make('End date', 'end_date_formatted', 'end_date')
                 ->sortable(),
 
-            Column::make('Payment term id', 'payment_term_id'),
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+            Column::make('Payment term id', 'payment_term_id_formatted'),
 
             Column::action('Action')
         ];
@@ -95,15 +90,27 @@ final class ClientContractTable extends PowerGridComponent
         $this->js('alert('.$rowId.')');
     }
 
+    #[On('client-contract-delete')]
+    public function delete($rowId): void
+    {
+        ClientContract::find($rowId)->delete();
+    }
+
     public function actions(ClientContract $row): array
     {
-        return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
+        $canDelete = auth()->user()->can('companyContacts.delete');
+
+        $buttons = [];
+
+        if ($canDelete) {
+            $buttons[] = Button::add('delete')
+                ->slot('Delete')
                 ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
-        ];
+                ->class('btn-red btn-sm rounded')
+                ->dispatch('client-contract-delete', ['rowId' => $row->id]);
+        }
+
+        return $buttons;
     }
 
     /*

@@ -33,7 +33,7 @@
                             <button type="button" class="tab" id="contracts-tab" data-hs-tab="#contracts" aria-controls="contracts" role="tab">
                                 Contracts
                             </button>
-                            <button type="button" class="tab" id="notes-tab" data-hs-tab="#notes" aria-controls="notes" role="tab">
+                            <button type="button" class="tab" id="note-tab" data-hs-tab="#note" aria-controls="note" role="tab">
                                 Notes
                             </button>
                             <button type="button" class="tab" id="onboarding-tab" data-hs-tab="#onboarding" aria-controls="onboarding" role="tab">
@@ -74,8 +74,9 @@
                     <livewire:employee.client-contracts.create :client="$client" />
                     <livewire:employee.client-contracts.list :client="$client" />
                 </div>
-                <div id="notes" class="hidden" role="tabpanel" aria-labelledby="notes-tab">
-                    Notes
+                <div id="note" class="hidden" role="tabpanel" aria-labelledby="note-tab">
+                    <livewire:employee.client-notes.create :client="$client" />
+                    <livewire:employee.client-notes.list :client="$client" />
                 </div>
                 <div id="onboarding" class="hidden" role="tabpanel" aria-labelledby="onboarding-tab">
                     Onboarding
