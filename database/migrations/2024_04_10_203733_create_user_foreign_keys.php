@@ -10,6 +10,10 @@ return new class extends Migration {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
         });
+
+        Schema::table('client_contracts', function (Blueprint $table) {
+            $table->foreignId('document_id')->nullable()->constrained('documents')->cascadeOnDelete()->cascadeOnUpdate();
+        });
     }
 
     public function down(): void

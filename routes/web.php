@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DocumentCategoryController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -88,6 +89,19 @@ Route::middleware(['auth', 'verified', 'lockCheck'])
                             ->name('create');
 
                         Route::get('edit/{id}', [ClientController::class, 'edit'])
+                            ->name('edit');
+                    });
+
+                Route::prefix('documents')
+                    ->name('documents.')
+                    ->group(function () {
+                        Route::get('/', [DocumentController::class, 'index'])
+                            ->name('index');
+
+                        Route::get('create', [DocumentController::class, 'create'])
+                            ->name('create');
+
+                        Route::get('edit/{id}', [DocumentController::class, 'edit'])
                             ->name('edit');
                     });
             });

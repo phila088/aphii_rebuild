@@ -142,6 +142,11 @@ class User extends Authenticatable implements Auditable
         return $this->hasMany(Client::class);
     }
 
+    public function document(): HasMany
+    {
+        return $this->hasMany(Document::class);
+    }
+
     public function userProfile(): HasOne
     {
         return $this->hasOne(UserProfile::class);

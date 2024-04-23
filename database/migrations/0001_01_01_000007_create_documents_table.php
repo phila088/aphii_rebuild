@@ -20,13 +20,13 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('company_id')->nullable()->constrained('companies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete()->cascadeOnUpdate();
-            // $table->foreignId('vendor_id')->nullable()->constrained('vendors')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('vendor_id')->nullable()->constrained('vendors')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('document_category_id')->constrained('document_categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->string('type');
-            $table->string('size');
-            $table->string('path');
+            $table->string('type')->nullable();
+            $table->string('size')->nullable();
+            $table->string('path')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

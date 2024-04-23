@@ -19,6 +19,7 @@ class ClientContract extends Model implements Auditable
         'start_date',
         'end_date',
         'payment_term_id',
+        'document_id'
     ];
 
     public function client(): BelongsTo
@@ -29,6 +30,11 @@ class ClientContract extends Model implements Auditable
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class);
     }
 
     public function paymentTerm(): BelongsTo

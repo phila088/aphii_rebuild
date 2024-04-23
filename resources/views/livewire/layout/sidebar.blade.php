@@ -122,6 +122,42 @@ new class extends Component
                     </li>
                 @endcanany
 
+                @canany (['documents.viewAny', 'documents.create'])
+                    <li class="slide has-sub">
+                        <a href="javascript:void(0);" class="side-menu__item">
+                            <span class=" side-menu__icon">
+                                <i class="bi bi-file-earmark"></i>
+                            </span>
+                            <span class="side-menu__label mt-[0.3rem]">
+                                Documents
+                            </span>
+                            <i class="fe fe-chevron-right side-menu__angle tw-mt-[0.3rem]"></i>
+                        </a>
+                        @canany (['documents.viewAny', 'documents.create'])
+                            <ul class="slide-menu child2">
+                                @can ('documents.viewAny')
+                                    <li class="slide">
+                                        <a href="{{ route('employee.documents.index') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                View
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can ('companies.create')
+                                    <li class="slide">
+                                        <a href="{{ route('employee.documents.create') }}" class="side-menu__item">
+                                            <span class="side-menu__label">
+                                                Create
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        @endcanany
+                    </li>
+                @endcanany
+
                 <li class="slide__category"><span class="category-name"><hr /></span></li>
 
                 @hasrole('Super Admin')

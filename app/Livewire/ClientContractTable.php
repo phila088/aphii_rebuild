@@ -50,9 +50,12 @@ final class ClientContractTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('company_id_formatted', fn (ClientContract $model) => $model->company->name)
             ->add('contract_number')
-            ->add('start_date_formatted', fn (ClientContract $model) => Carbon::parse($model->start_date)->timezone(auth()->user()->userProfile->timezone)->format('d/m/Y'))
-            ->add('end_date_formatted', fn (ClientContract $model) => Carbon::parse($model->end_date)->timezone(auth()->user()->userProfile->timezone)->format('d/m/Y'))
-            ->add('payment_term_id_formatted', fn (ClientContract $model) => $model->paymentTerm->code);
+            ->add('start_date_formatted', fn (ClientContract $model) => Carbon::parse($model->start_date)->format(config('aphii.dateFormat')))
+            ->add('end_date_formatted', fn (ClientContract $model) => Carbon::parse($model->end_date)->format(config('aphii.dateFormat')))
+            ->add('payment_term_id_formatted', fn (ClientContract $model) => $model->paymentTerm->code)
+            ->add('document_id_formatted', function (ClientContract $model) {
+                return '<a href="' . config('app.url') . '/' . $model->document->path . '" target="_blank">Link</a>';
+            });
     }
 
     public function columns(): array
@@ -70,6 +73,8 @@ final class ClientContractTable extends PowerGridComponent
                 ->sortable(),
 
             Column::make('Payment term id', 'payment_term_id_formatted'),
+
+            Column::make('Document', 'document_id_formatted'),
 
             Column::action('Action')
         ];
